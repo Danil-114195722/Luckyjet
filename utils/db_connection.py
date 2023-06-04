@@ -52,6 +52,7 @@ def create_table_user():
     tg_id INT NOT NULL UNIQUE,
     reg bool NOT NULL,
     rate INT NULL,
+    reg_date DATETIME NULL DEFAULT NULL,
     rate_date DATETIME NULL DEFAULT NULL,
     start_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );'''
@@ -88,6 +89,8 @@ def add_user(tg_id: int, reg: int):
 def make_reg(tg_id: int):
     update_query = f'UPDATE user SET reg = 1 WHERE tg_id = {tg_id};'
     exec_without_resp(CONNECTION, update_query)
+    update_query_rate_date = f'UPDATE user SET reg_date = CURRENT_TIMESTAMP WHERE tg_id = {tg_id};'
+    exec_without_resp(CONNECTION, update_query_rate_date)
 
 
 # добавить тариф пользователю
@@ -113,9 +116,9 @@ if __name__ == '__main__':
     # print(
     #     datetime.strptime(a, '%Y-%m-%d %H:%M:%S')
     # )
-    # make_reg(tg_id=1601245210)
+    make_reg(tg_id=1601245210)
     # make_rate(tg_id=895297805)
-    # del_rate(tg_id=1601245210)
+    # del_rate(tg_id=895297805)
     # pass
     all_users = select_all_users()
     for user in all_users:

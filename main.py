@@ -90,7 +90,6 @@ async def start_command(message: types.Message, state: FSMContext):
     await bot.send_photo(chat_id=user_id, photo=photo, caption='Выбери тариф:', reply_markup=inline_choose_rate)
 
     await RegState.chosen_rate.set()
-    # await start(callback=message, state=state)
 
 
 '''
@@ -102,13 +101,27 @@ $$$$$$$$$$$$$$$$$$$
 
 # начать
 @disp.callback_query_handler(state=RegState.chosen_rate, text=['always', 'month', 'free'])
-# @disp.callback_query_handler(state=RegState.chosen_rate)
 async def start(callback: CallbackQuery, state: FSMContext):
     state_data = await state.get_data()
 
+    user_id = state_data["user_id"]
+    user_info = select_user(tg_id=user_id)
+
+    if callback.data == "free" and user_info[2] != 0:
+        make_rate(tg_id=user_id, rate=0)
+        await state.update_data(chosen_rate=0)
+
+    elif callback.data == "month" and user_info[2] != 0:
+        make_rate(tg_id=user_id, rate=1)
+        await state.update_data(chosen_rate=1)
+
+    elif callback.data == "always" and user_info[2] != 0:
+        make_rate(tg_id=user_id, rate=2)
+        await state.update_data(chosen_rate=2)
+
     photo = types.InputFile("./img/start_reg.jpeg")
     await bot.send_photo(
-        chat_id=state_data["user_id"],
+        chat_id=user_id,
         photo=photo,
         caption='''Привет!
 Как я понимаю ты хочешь получить доступ в мой ЗАКРЫТЫЙ ВИП КАНАЛ с сигналами для игры в LuckyJet?
@@ -146,7 +159,7 @@ async def start_reg(callback: CallbackQuery, state: FSMContext, fail_reg: bool =
             caption='''❌РЕГИСТРАЦИЯ НЕ ПРОЙДЕНА\n\n📲Для начала необходимо провести регистрацию на 1win (провайдер игры LuckyJet). Чтобы бот успешно проверил регистрацию, нужно соблюсти важные условия:
 \n1️⃣Аккаунт обязательно должен быть НОВЫМ! Если у вас уже есть аккаунт и при нажатии на кнопку «РЕГИСТРАЦИЯ» вы попадаете на старый, необходимо выйти с него и заново нажать на кнопку «РЕГИСТРАЦИЯ», после чего по новой зарегистрироваться!
 \n2️⃣Чтобы бот смог проверить вашу регистрацию, обязательно нужно ввести промокод CRYPA при регистрации!
-⚠️Как ввести промокод можно узнать здесь: https://t.me/c/1800027834/307
+\n⚠️Как ввести промокод можно узнать здесь: https://t.me/c/1800027834/307
 \nПосле РЕГИСТРАЦИИ бот автоматически переведёт вас к следующему шагу✅''',
             reply_markup=main_keyboard
         )

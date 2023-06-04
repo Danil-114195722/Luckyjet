@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Rebase all funcs">
-      <change afterPath="$PROJECT_DIR$/schedule_after_term.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/schedule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/sqlite3.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_connection.py" afterDir="false" />
-    </list>
+    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Create first simple schedule.py" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -219,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685887491629</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Create first simple schedule.py">
+      <created>1685909323128</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685909323128</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -228,6 +228,7 @@
     <MESSAGE value="add schedule" />
     <MESSAGE value="Fix correct answer if you have paid deposit" />
     <MESSAGE value="Rebase all funcs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rebase all funcs" />
+    <MESSAGE value="Create first simple schedule.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create first simple schedule.py" />
   </component>
 </project>

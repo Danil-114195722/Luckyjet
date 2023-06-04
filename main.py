@@ -8,6 +8,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import CallbackQuery
 
 from data.config import TOKEN
+from utils.schedulers import schedule, schedule_after_term
 from utils.keyboard import inline_choose_rate, inline_join_group, main_keyboard, inline_buy_rate
 from utils.db_connection import create_table_user, \
     select_user, add_user, \
@@ -70,6 +71,12 @@ async def check_deposit_func(user_id: int):
 async def on_startup(disp):
     # создаём таблицу "user"
     create_table_user()
+
+    # запускаем рассыльщики
+    # await schedule.main()
+    # await schedule_after_term.main()
+    from os import system
+    system('bash start_all.sh')
 
 
 # выбор тарифа

@@ -1,3 +1,5 @@
+import asyncio
+from time import sleep
 from datetime import datetime, timedelta
 import aioschedule
 
@@ -12,15 +14,7 @@ bot = Bot(token=TOKEN)
 disp = Dispatcher(bot=bot)
 
 
-async def not_pay():
-    pass
-
-
-async def not_reg():
-    pass
-
-
-def scheduler():
+async def scheduler():
     all_users = select_all_users()
 
     for user in all_users:
@@ -47,3 +41,18 @@ def scheduler():
             if (now_datetime - start_date).seconds >= 1:
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay more 1days')
+
+    await bot.close()
+
+
+async def main():
+    aioschedule.every(1).day.do(scheduler)
+
+    while True:
+        print('yo')
+        await asyncio.create_task(aioschedule.run_pending())
+        sleep(3600)
+
+
+if __name__ == '__main__':
+    asyncio.run(main())

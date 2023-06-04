@@ -114,7 +114,7 @@ if __name__ == '__main__':
     #     datetime.strptime(a, '%Y-%m-%d %H:%M:%S')
     # )
     # make_reg(tg_id=1601245210)
-    make_rate(tg_id=1601245210)
+    # make_rate(tg_id=895297805)
     # del_rate(tg_id=1601245210)
     # pass
     all_users = select_all_users()

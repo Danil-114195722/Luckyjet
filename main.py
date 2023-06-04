@@ -8,7 +8,6 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import CallbackQuery
 
 from data.config import TOKEN
-from data.constants import free_time, month_time
 from utils.keyboard import main_keyboard, inline_choose_rate, inline_buy_rate
 from utils.db_connection import create_table_user, \
     select_user, add_user, \

@@ -43,7 +43,7 @@ def create_table_user():
     # id - уникальный id в таблице
     # tg_id - уникальный id юзера в тг
     # reg - True/False (зареган или нет)
-    # rate - выбранный тариф (0 - бесплатно, 1 - на месяц, 3 - бессрочно)
+    # rate - выбранный тариф (0 - бесплатно, 1 - на месяц, 2 - бессрочно)
     # rate_date - дата оплаты тарифа (выбора тарифа)
     # start_date - дата добавления юзера в БД (первое сообщение /start в бота от юзера)
 
@@ -69,6 +69,15 @@ def select_user(tg_id: int):
         return tuple()
 
 
+def select_all_users():
+    select_query = f'SELECT * FROM user;'
+    try:
+        return exec_with_resp(CONNECTION, select_query)[0]
+    # если юзеры не были найдены
+    except IndexError:
+        return tuple()
+
+
 # добавить нового пользователя в БД
 def add_user(tg_id: int, reg: int):
     insert_query = f'INSERT INTO user (tg_id, reg) VALUES ({tg_id}, {reg});'
@@ -83,20 +92,31 @@ def make_reg(tg_id: int):
 
 # добавить тариф пользователю
 def make_rate(tg_id: int, rate: int = 0):
-    update_query = f'UPDATE user SET rate = {rate} WHERE tg_id = {tg_id};'
-    update_query = f'UPDATE user SET rate_date = CURRENT_TIMESTAMP WHERE tg_id = {tg_id};'
-    exec_without_resp(CONNECTION, update_query)
+    update_query_rate = f'UPDATE user SET rate = {rate} WHERE tg_id = {tg_id};'
+    exec_without_resp(con=CONNECTION, query=update_query_rate)
+    update_query_rate_date = f'UPDATE user SET rate_date = CURRENT_TIMESTAMP WHERE tg_id = {tg_id};'
+    exec_without_resp(CONNECTION, update_query_rate_date)
 
 
 # удалить тариф у пользователя
 def del_rate(tg_id: int):
-    update_query = f'UPDATE user SET rate = NULL WHERE tg_id = {tg_id};'
-    exec_without_resp(CONNECTION, update_query)
+    update_query_rate = f'UPDATE user SET rate = NULL WHERE tg_id = {tg_id};'
+    exec_without_resp(CONNECTION, update_query_rate)
+    update_query_rate_date = f'UPDATE user SET rate_date = NULL WHERE tg_id = {tg_id};'
+    exec_without_resp(CONNECTION, update_query_rate_date)
 
 
 if __name__ == '__main__':
     # add_user(tg_id=1234567, reg=False)
-    # print(select_user(tg_id=1234567))
+    # a = select_user(tg_id=1234567)[-1]
+    # print(a)
+    # print(
+    #     datetime.strptime(a, '%Y-%m-%d %H:%M:%S')
+    # )
     # make_reg(tg_id=1601245210)
-    # del_rate(tg_id=1234567)
-    pass
+    # make_rate(tg_id=1601245210)
+    # del_rate(tg_id=1601245210)
+    # pass
+    all_users = select_all_users()
+    for user in all_users:
+        print(user)

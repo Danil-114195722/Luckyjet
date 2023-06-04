@@ -53,7 +53,7 @@ async def check_reg_func(user_id: int):
 async def check_deposit_func(user_id: int):
     rate = select_user(tg_id=user_id)[3]
 
-    if rate:
+    if rate is not None:
         return True
 
     # здесь Никита проверяет переход по ссылке на оплату депозита
@@ -115,7 +115,16 @@ async def help_command(message: types.Message):
 @disp.message_handler(commands='check_reg', state='*')
 @disp.message_handler(text='проверить регистрацию', state='*')
 async def check_reg_command(message: types.Message):
-    await message.answer('')
+    reg = await check_reg_func(user_id=message.from_user.id)
+
+    if reg:
+        await message.answer('Вы зарегистрированы!')
+    else:
+        await message.answer('''📲Для начала необходимо провести регистрацию на 1win (провайдер игры LuckyJet). Чтобы бот успешно проверил регистрацию, нужно соблюсти важные условия:
+
+1️⃣Аккаунт обязательно должен быть НОВЫМ! Если у вас уже есть аккаунт и при нажатии на кнопку «РЕГИСТРАЦИЯ» вы попадаете на старый, необходимо выйти с него и заново нажать на кнопку «РЕГИСТРАЦИЯ», после чего по новой зарегистрироваться!
+
+2️⃣Чтобы бот смог проверить вашу регистрацию, обязательно нужно ввести промокод bot22 при регистрации!''')
 
 
 '''
@@ -153,7 +162,7 @@ async def chosen_rate(call: CallbackQuery, state: FSMContext):
         await call.message.answer('Вы зарегистрированы!')
 
         await RegState.pay_deposit.set()
-        await pay_deposit(message=call.message, state=state)
+        await check_deposit(message=call.message, state=state)
     else:
         # await state.update_data(reg=False)
         await call.message.answer(text='''📲Для начала необходимо провести регистрацию на 1win (провайдер игры LuckyJet). Чтобы бот успешно проверил регистрацию, нужно соблюсти важные условия:
@@ -175,9 +184,11 @@ async def make_reg_status(message: types.Message, state: FSMContext):
 # проверка пополненного депозита
 @disp.message_handler(state=RegState.pay_deposit)
 async def check_deposit(message: types.Message, state: FSMContext):
-    payed_dep = await check_deposit_func(user_id=message.from_user.id)
+    state_data = await state.get_data()
 
-    if payed_dep:
+    paid_dep = await check_deposit_func(user_id=state_data["user_id"])
+
+    if paid_dep:
         await message.answer(text='''Добро пожаловать в ВИП-чат! Вот ссылка на вход - https://t.me/+IwQ9bT41nzBiN2Yy
 Если будут какие-то вопросы, то пиши мне @strategvlad''')
     else:

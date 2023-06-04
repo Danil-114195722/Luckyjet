@@ -42,19 +42,28 @@ async def main():
             # ПОСЫЛАЕМ ПУШИ БЕЗ РЕГИСТРАЦИИ
 
             # ЗДЕСЬ БУДЕТ ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 3 ДНЕЙ НЕ ЗАРЕГАН
-            if now_datetime - start_date >= push_not_reg_3days:
+            if (now_datetime - start_date) >= (push_not_reg_3days - timedelta(seconds=2)) and \
+               (now_datetime - start_date) <= (push_not_reg_3days + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 3days')
-            elif now_datetime - start_date >= push_not_reg_1day:
+
+            elif (now_datetime - start_date) >= (push_not_reg_1day - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_reg_1day + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 1day')
-            elif now_datetime - start_date >= push_not_reg_12hours:
+
+            elif (now_datetime - start_date) >= (push_not_reg_12hours - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_reg_12hours + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 12hours')
-            elif now_datetime - start_date >= push_not_reg_4hours:
+
+            elif (now_datetime - start_date) >= (push_not_reg_4hours - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_reg_4hours + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 4hours')
-            elif now_datetime - start_date >= push_not_reg_30min:
+
+            elif (now_datetime - start_date) >= (push_not_reg_30min - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_reg_30min + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 30min')
 
@@ -63,19 +72,27 @@ async def main():
             # ПОСЫЛАЕМ ПУШИ БЕЗ ОПЛАТЫ ДЕПОЗИТА
 
             # ЗДЕСЬ БУДЕТ ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 2 ДНЕЙ НЕ ПЛАТИТ ДЕПОЗИТ
-            if now_datetime - start_date >= push_not_pay_1day:
+            if (now_datetime - start_date) >= (push_not_pay_1day - timedelta(seconds=2)) and \
+               (now_datetime - start_date) <= (push_not_pay_1day + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay 1day')
-            elif now_datetime - start_date >= push_not_pay_12hours:
+
+            elif (now_datetime - start_date) >= (push_not_pay_12hours - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_pay_12hours + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay 12hours')
-            elif now_datetime - start_date >= push_not_pay_3hours:
+
+            elif (now_datetime - start_date) >= (push_not_pay_3hours - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_pay_3hours + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay 3hours')
-            elif now_datetime - start_date >= push_not_pay_1hour:
+
+            elif (now_datetime - start_date) >= (push_not_pay_1hour - timedelta(seconds=2)) and \
+                 (now_datetime - start_date) <= (push_not_pay_1hour + timedelta(seconds=2)):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay 1hour')
 
+    await asyncio.sleep(2)
     await bot.close()
 
 if __name__ == '__main__':

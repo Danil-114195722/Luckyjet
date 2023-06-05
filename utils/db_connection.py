@@ -121,6 +121,7 @@ if __name__ == '__main__':
     # make_reg(tg_id=895297805)
     #
     # make_rate(tg_id=895297805)
+    # make_rate(tg_id=1601245210)
     # del_rate(tg_id=895297805)
     # pass
     all_users = select_all_users()

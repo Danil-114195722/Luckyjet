@@ -21,6 +21,7 @@ push_not_reg_12hours = timedelta(hours=12)
 push_not_reg_1day = timedelta(days=1)
 push_not_reg_3days = timedelta(days=3)
 
+# tests
 # push_not_reg_30min = timedelta(minutes=3)
 # push_not_reg_4hours = timedelta(minutes=5)
 # push_not_reg_12hours = timedelta(minutes=8)
@@ -31,6 +32,7 @@ push_not_pay_3hours = timedelta(hours=3)
 push_not_pay_12hours = timedelta(hours=12)
 push_not_pay_1day = timedelta(days=1)
 
+# tests
 # push_not_pay_1hour = timedelta(minutes=2)
 # push_not_pay_3hours = timedelta(minutes=4)
 # push_not_pay_12hours = timedelta(minutes=7)

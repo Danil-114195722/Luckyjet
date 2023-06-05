@@ -1,5 +1,4 @@
 import asyncio
-from time import sleep
 from datetime import datetime, timedelta
 import aioschedule
 
@@ -22,23 +21,22 @@ async def scheduler():
         user_id = user[1]
 
         if not user[2]:
-            print('not reg')
+            # print('not reg')
             start_date = datetime.strptime(user[-1], '%Y-%m-%d %H:%M:%S')
-            # ПОСЫЛАЕМ ПУШИ БЕЗ РЕГИСТРАЦИИ
 
-            # ЗДЕСЬ БУДЕТ ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 3 ДНЕЙ НЕ ЗАРЕГАН
-            # if (now_datetime - start_date).days % 2 == 1 and (now_datetime - start_date).days != 1:
-            if (now_datetime - start_date).seconds % 2 == 1 and (now_datetime - start_date).seconds != 1:
+            # ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 3 ДНЕЙ НЕ ЗАРЕГАН
+            # if (((now_datetime - start_date).seconds // 60) % 2 == 1) and (((now_datetime - start_date).seconds // 60) != 1):
+            if ((now_datetime - start_date).days % 2 == 1) and ((now_datetime - start_date).days != 1):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg more 3days')
 
         if user[3] is None and user[2]:
-            print('not pay')
+            # print('not pay')
             start_date = datetime.strptime(user[-3], '%Y-%m-%d %H:%M:%S')
 
-            # ЗДЕСЬ БУДЕТ ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 1 ДНЯ НЕ ПЛАТИТ ДЕПОЗИТ
-            # if (now_datetime - start_date).days >= 1:
-            if (now_datetime - start_date).seconds >= 1:
+            # ПРОВЕРКА НА ТО, ЧТО ПОЛЬЗОВАТЕЛЛЬ БОЛЕЕ 1 ДНЯ НЕ ПЛАТИТ ДЕПОЗИТ
+            # if ((now_datetime - start_date).seconds // 60) >= 1:
+            if (now_datetime - start_date).days >= 1:
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay more 1day')
 
@@ -47,11 +45,13 @@ async def scheduler():
 
 async def main():
     aioschedule.every(1).day.do(scheduler)
+    # aioschedule.every(1).minute.do(scheduler)
 
     while True:
         print('yo')
         await asyncio.create_task(aioschedule.run_pending())
         await asyncio.sleep(3600)
+        # await asyncio.sleep(5)
 
 
 if __name__ == '__main__':

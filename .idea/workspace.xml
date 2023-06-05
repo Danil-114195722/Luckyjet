@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Forwarder is duplicated">
+    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Make correct forwarder from start to first not reg day and to third not paid day">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/sqlite3.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" afterDir="false" />
     </list>
@@ -236,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685919222348</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Make correct forwarder from start to first not reg day and to third not paid day">
+      <created>1685985449422</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685985449422</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -247,6 +251,7 @@
     <MESSAGE value="Rebase all funcs" />
     <MESSAGE value="Create first simple schedule.py" />
     <MESSAGE value="Forwarder is duplicated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Forwarder is duplicated" />
+    <MESSAGE value="Make correct forwarder from start to first not reg day and to third not paid day" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make correct forwarder from start to first not reg day and to third not paid day" />
   </component>
 </project>

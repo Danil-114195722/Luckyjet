@@ -17,7 +17,6 @@ disp = Dispatcher(bot=bot)
 
 async def scheduler():
     all_users = select_all_users()
-    print(all_users, '\n\n')
     for user in all_users:
         now_datetime = datetime.now() - timedelta(hours=3)
         user_id = user[1]
@@ -36,7 +35,7 @@ async def scheduler():
                     del_rate(tg_id=user_id)
 
         if not user[2]:
-            print('yo2')
+            # print('yo2')
             start_date = datetime.strptime(user[-1], '%Y-%m-%d %H:%M:%S')
             # ПОСЫЛАЕМ ПУШИ БЕЗ РЕГИСТРАЦИИ
 
@@ -73,7 +72,7 @@ async def scheduler():
                 continue
 
         if user[2] and user[3] is None:
-            print('yo1')
+            # print('yo1')
             start_date = datetime.strptime(user[-3], '%Y-%m-%d %H:%M:%S')
             # ПОСЫЛАЕМ ПУШИ БЕЗ ОПЛАТЫ ДЕПОЗИТА
 

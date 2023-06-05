@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Create first simple schedule.py" />
+    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Forwarder is duplicated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/sqlite3.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,29 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/danil/Documents/Freelance/Luckyjet/utils",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/danil/Documents/Freelance/Luckyjet/utils/schedulers&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/schedulers" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/db" />
       <recent name="$PROJECT_DIR$/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/schedulers" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.db_connection">
     <configuration name="constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Luckyjet" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,7 +159,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/schedule.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/schedulers/schedule.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,9 +170,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.db_connection" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.schedule" />
-        <item itemvalue="Python.db_connection" />
         <item itemvalue="Python.main_backup" />
         <item itemvalue="Python.constants" />
       </list>
@@ -219,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685909323128</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Forwarder is duplicated">
+      <created>1685919222348</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685919222348</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -229,6 +246,7 @@
     <MESSAGE value="Fix correct answer if you have paid deposit" />
     <MESSAGE value="Rebase all funcs" />
     <MESSAGE value="Create first simple schedule.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create first simple schedule.py" />
+    <MESSAGE value="Forwarder is duplicated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Forwarder is duplicated" />
   </component>
 </project>

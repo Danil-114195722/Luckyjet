@@ -73,10 +73,8 @@ async def on_startup(disp):
     create_table_user()
 
     # запускаем рассыльщики
-    # await schedule.main()
-    # await schedule_after_term.main()
-    from os import system
-    system('bash start_all.sh')
+    asyncio.create_task(schedule.main())
+    asyncio.create_task(schedule_after_term.main())
 
 
 # выбор тарифа

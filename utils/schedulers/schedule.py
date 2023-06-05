@@ -1,6 +1,4 @@
 import asyncio
-
-from time import sleep
 from datetime import datetime, timedelta
 
 from aiogram.dispatcher import Dispatcher
@@ -19,7 +17,7 @@ disp = Dispatcher(bot=bot)
 
 async def scheduler():
     all_users = select_all_users()
-    print(all_users)
+    print(all_users, '\n\n')
     for user in all_users:
         now_datetime = datetime.now() - timedelta(hours=3)
         user_id = user[1]
@@ -40,64 +38,69 @@ async def scheduler():
         if not user[2]:
             print('yo2')
             start_date = datetime.strptime(user[-1], '%Y-%m-%d %H:%M:%S')
-            print(now_datetime)
-            print(start_date)
             # ПОСЫЛАЕМ ПУШИ БЕЗ РЕГИСТРАЦИИ
 
-            if now_datetime.day == (start_date + push_not_reg_3days).day:
+            if ((now_datetime - start_date) > (push_not_reg_3days - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_reg_3days):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 3days')
                 continue
 
-            elif now_datetime.day == (start_date + push_not_reg_1day).day:
+            elif ((now_datetime - start_date) > (push_not_reg_1day - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_reg_1day):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 1day')
                 continue
 
-            elif now_datetime.hour == (start_date + push_not_reg_12hours).hour:
+            elif ((now_datetime - start_date) > (push_not_reg_12hours - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_reg_12hours):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_reg 12hours')
                 continue
 
-            # elif now_datetime.hour == (start_date + push_not_reg_4hours).hour:
-            elif now_datetime.minute == (start_date + push_not_reg_4hours).minute:
+            elif ((now_datetime - start_date) > (push_not_reg_4hours - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_reg_4hours):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
-                print('not_reg 4hours')
                 await bot.send_message(chat_id=user_id, text='not_reg 4hours')
                 continue
 
-            elif now_datetime.minute == (start_date + push_not_reg_30min).minute:
+            elif ((now_datetime - start_date) > (push_not_reg_30min - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_reg_30min):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
-                print('not_reg 30min')
                 await bot.send_message(chat_id=user_id, text='not_reg 30min')
                 continue
+            else:
+                continue
 
-        if user[3] is None and user[2]:
+        if user[2] and user[3] is None:
             print('yo1')
             start_date = datetime.strptime(user[-3], '%Y-%m-%d %H:%M:%S')
-            print(now_datetime)
-            print(start_date)
             # ПОСЫЛАЕМ ПУШИ БЕЗ ОПЛАТЫ ДЕПОЗИТА
 
-            if now_datetime.day == (start_date + push_not_pay_1day).day:
+            if ((now_datetime - start_date) > (push_not_pay_1day - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_pay_1day):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
                 await bot.send_message(chat_id=user_id, text='not_pay 1day')
                 continue
 
-            elif now_datetime.hour == (start_date + push_not_pay_12hours).hour:
+            elif ((now_datetime - start_date) > (push_not_pay_12hours - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_pay_12hours):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
+                print(f'not_pay 12hours {user_id} {now_datetime - start_date}')
                 await bot.send_message(chat_id=user_id, text='not_pay 12hours')
                 continue
 
-            # elif now_datetime.hour == (start_date + push_not_pay_3hours).hour:
-            elif now_datetime.minute == (start_date + push_not_pay_3hours).minute:
+            elif ((now_datetime - start_date) > (push_not_pay_3hours - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_pay_3hours):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
+                print(f'not_pay 3hours {user_id} {now_datetime - start_date}')
                 await bot.send_message(chat_id=user_id, text='not_pay 3hours')
                 continue
 
-            # elif now_datetime.hour == (start_date + push_not_pay_1hour).hour:
-            elif now_datetime.minute == (start_date + push_not_pay_1hour).minute:
+            elif ((now_datetime - start_date) > (push_not_pay_1hour - timedelta(minutes=1))) and \
+                    ((now_datetime - start_date) <= push_not_pay_1hour):
                 # ПОСЫЛАЕМ СООБЩЕНИЕ ЮЗЕРУ
+                print(f'not_pay 1hour {user_id} {now_datetime - start_date}')
                 await bot.send_message(chat_id=user_id, text='not_pay 1hour')
                 continue
 
@@ -107,7 +110,7 @@ async def scheduler():
 async def main():
     while True:
         await scheduler()
-        sleep(60)
+        await asyncio.sleep(60)
 
 
 if __name__ == '__main__':

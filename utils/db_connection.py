@@ -110,13 +110,16 @@ def del_rate(tg_id: int):
 
 
 if __name__ == '__main__':
-    # add_user(tg_id=1234567, reg=False)
+    # add_user(tg_id=895297805, reg=False)
     # a = select_user(tg_id=1234567)[-1]
     # print(a)
     # print(
     #     datetime.strptime(a, '%Y-%m-%d %H:%M:%S')
     # )
-    make_reg(tg_id=1601245210)
+    #
+    # make_reg(tg_id=1601245210)
+    # make_reg(tg_id=895297805)
+    #
     # make_rate(tg_id=895297805)
     # del_rate(tg_id=895297805)
     # pass

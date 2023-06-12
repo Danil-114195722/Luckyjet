@@ -5,14 +5,15 @@ from aiogram.utils import executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import Dispatcher, FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 from data.config import TOKEN
 from utils.schedulers import schedule, schedule_after_term
-from utils.keyboard import inline_choose_rate, inline_join_group, main_keyboard, inline_buy_rate
+from utils.keyboard import inline_join_group, inline_buy_rate
 from utils.db_connection import create_table_user, \
     select_user, add_user, \
     make_reg, make_rate
+from check_reg_part.function import logfun, check
 
 
 bot = Bot(token=TOKEN)
@@ -92,6 +93,12 @@ async def start_command(message: types.Message, state: FSMContext):
         add_user(tg_id=user_id, reg=False)
 
     photo = types.InputFile("./img/select_rate.jpeg")
+
+    inline_choose_rate = InlineKeyboardMarkup(row_width=1)
+    inline_choose_rate.add(InlineKeyboardButton(text='Навсегда (70к)', url='https://t.me/strategvlad', callback_data='always'))
+    inline_choose_rate.add(InlineKeyboardButton(text='На месяц (25к)', url='https://t.me/strategvlad', callback_data='month'))
+    inline_choose_rate.add(InlineKeyboardButton(text='На неделю (БЕСПЛАТНО)', callback_data='free'))
+
     await bot.send_photo(chat_id=user_id, photo=photo, caption='Выбери тариф:', reply_markup=inline_choose_rate)
 
     await RegState.chosen_rate.set()
@@ -145,6 +152,11 @@ async def start(callback: CallbackQuery, state: FSMContext):
 async def start_reg(callback: CallbackQuery, state: FSMContext, fail_reg: bool = False):
     state_data = await state.get_data()
 
+    main_keyboard = InlineKeyboardMarkup(row_width=1)
+    main_keyboard.add(InlineKeyboardButton(text='РЕГИСТРАЦИЯ', url=f'https://1wxuut.top/?open=register&sub1={state_data["user_id"]}#p4ny'))
+    main_keyboard.add(InlineKeyboardButton(text='ПРОВЕРИТЬ РЕГИСТРАЦИЮ', callback_data='check_reg'))
+    main_keyboard.add(InlineKeyboardButton(text='ПОМОЩЬ', url='https://t.me/strategvlad'))
+
     if not fail_reg:
         photo = types.InputFile("./img/reg_new_acc.jpeg")
         await bot.send_photo(
@@ -175,9 +187,14 @@ async def start_reg(callback: CallbackQuery, state: FSMContext, fail_reg: bool =
 async def check_reg(callback: CallbackQuery, state: FSMContext):
     state_data = await state.get_data()
 
-    reg = await check_reg_func(user_id=state_data["user_id"])
+    main_keyboard = InlineKeyboardMarkup(row_width=1)
+    main_keyboard.add(InlineKeyboardButton(text='РЕГИСТРАЦИЯ', url=f'https://1wxuut.top/?open=register&sub1={state_data["user_id"]}#p4ny'))
+    main_keyboard.add(InlineKeyboardButton(text='ПРОВЕРИТЬ РЕГИСТРАЦИЮ', callback_data='check_reg'))
+    main_keyboard.add(InlineKeyboardButton(text='ПОМОЩЬ', url='https://t.me/strategvlad'))
 
-    if reg:
+    logfun()
+    res = check(state_data["user_id"])
+    if res:
         await deposit(callback=callback, state=state)
     else:
         await start_reg(callback=callback, state=state, fail_reg=True)
@@ -207,6 +224,11 @@ async def check_paid(callback: CallbackQuery, state: FSMContext):
     rate_paid = await check_deposit_func(user_id=state_data["user_id"])
 
     if rate_paid:
+        main_keyboard = InlineKeyboardMarkup(row_width=1)
+        main_keyboard.add(InlineKeyboardButton(text='РЕГИСТРАЦИЯ', url=f'https://1wxuut.top/?open=register&sub1={state_data["user_id"]}#p4ny'))
+        main_keyboard.add(InlineKeyboardButton(text='ПРОВЕРИТЬ РЕГИСТРАЦИЮ', callback_data='check_reg'))
+        main_keyboard.add(InlineKeyboardButton(text='ПОМОЩЬ', url='https://t.me/strategvlad'))
+
         await bot.send_message(
             chat_id=state_data["user_id"],
             text='''Добро пожаловать в ВИП-чат! Вот ссылка на вход - https://t.me/+IwQ9bT41nzBiN2Yy
@@ -215,6 +237,20 @@ async def check_paid(callback: CallbackQuery, state: FSMContext):
         )
     else:
         await deposit(callback=callback, state=state)
+
+
+# Модуль для получения инфы из тг канала о регистрациях и депозитах
+@disp.channel_post_handler(content_types=['any'])
+async def main_handler(message: types.Message, state: FSMContext):
+    state_data = await state.get_data()
+
+    main_keyboard = InlineKeyboardMarkup(row_width=1)
+    main_keyboard.add(InlineKeyboardButton(text='РЕГИСТРАЦИЯ', url=f'https://1wxuut.top/?open=register&sub1={state_data["user_id"]}#p4ny'))
+    main_keyboard.add(InlineKeyboardButton(text='ПРОВЕРИТЬ РЕГИСТРАЦИЮ', callback_data='check_reg'))
+    main_keyboard.add(InlineKeyboardButton(text='ПОМОЩЬ', url='https://t.me/strategvlad'))
+
+    tech = message.text.split(":::")
+    await message.bot.send_message(chat_id=tech[0], text=f"{tech[1]}", reply_markup=main_keyboard)
 
 
 if __name__ == '__main__':

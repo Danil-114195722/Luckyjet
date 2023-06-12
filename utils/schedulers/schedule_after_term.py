@@ -88,7 +88,7 @@ async def main():
     # aioschedule.every(1).minute.do(scheduler)
 
     while True:
-        print('yo')
+        # print('yo')
         await asyncio.create_task(aioschedule.run_pending())
         await asyncio.sleep(3600)
         # await asyncio.sleep(5)

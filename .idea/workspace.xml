@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Make correct forwarder from first not reg day to future and from third not paid day to future">
+    <list default="true" id="84b9e62a-34e8-4d66-8e39-413e5fa659b0" name="Changes" comment="Rewrite norm texts in forwarding messages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/sqlite3.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/schedulers/schedule_after_term.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +37,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/danil/Documents/Freelance/Luckyjet/utils/schedulers&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/danil/Downloads/testProject&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -256,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685987650670</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Rewrite norm texts in forwarding messages">
+      <created>1685992704809</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685992704809</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -269,6 +271,7 @@
     <MESSAGE value="Forwarder is duplicated" />
     <MESSAGE value="Make correct forwarder from start to first not reg day and to third not paid day" />
     <MESSAGE value="Make correct forwarder from first not reg day to future and from third not paid day to future" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make correct forwarder from first not reg day to future and from third not paid day to future" />
+    <MESSAGE value="Rewrite norm texts in forwarding messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite norm texts in forwarding messages" />
   </component>
 </project>
